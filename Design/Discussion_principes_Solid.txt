@@ -1,0 +1,43 @@
+Single Responsability Principle :
+Notre idée initiale de design (inspiree du modele MVC) consistait a assurer qu'une classe doit avoir une et une seule raison pour changer en plus 
+de s'assurer que ces methodes sont coherentes avec son abstraction:
+Généralement, les classes du projet n'ont qu'une seule raison pour changer. Ce principe est suivi et il est en accord avec la volonté d'avoir une cohésion
+maximale : on n'assigne qu'une responsabilité à chacun des classes.
+
+Open closed Principle :
+Le design pour ce projet a spécifiquement été construit pour pouvoir être agrandi et non pas pour être modifié.
+Cela se traduit par une utilisation de l'héritage avec les classes abstraites et les classes de Controller afin de pouvoir rajouter des types de voyages ou bien
+des fonctionnalités aux différentes interfaces (Admin et Client) mais aussi par l'implémentation d'interfaces (telles que 'Gestionnaire') pour qu'une extension
+du design soit facilement réalisable.
+Au lieu de modifier des modules déjà existants, il suffit d'ajouter de nouveaux modules en cas de modification ou d'ajout d'exigences.
+Lors du raffininement du design, nous avons fait en sorte que les classes CRUD soit plus adaptées a un plus haut niveau d'abstraction et ainsi permettre aux 
+classes 'domaines' d'être plus ouvertes à l'extension et fermée à la modification interne.
+Les sous-classes de ces classes heritent ainsi des principales fonctions mais se specialisent dans leur propre scope ( SRP ).
+
+Liskov Substitutability Principle :
+Ce principe ne peut pas être appliqué à notre diagramme car il ne comporte pas de sous-type
+(seulement des types comme Voyage, Location .. et des classes comme Vol, Aéroport ..).
+Mais si on parle en terme de classes, notre conception contient une  majorité de superclasses dont les sous-classes sont toutes conformes a ces dernieres dans 
+le sens ou elles peuvent se substituer sans engendre d'erreur de conception fatale : les sous-classes peuvent être utilisé dans n'importe quels contextes où 
+un objet de la superclasse est attendue ce qui nous permet de mieux  respecter  le LSP.
+
+Interface Segregation Principle :
+Le principe de ségrégation des interfaces est appliqué dans ce projet.
+En effet, chaque type d'utilisateur (c'est-à-dire Admin et Client) interagit avec une interface différente. Cela favorise l'encapsulation et la sécurité
+car un simple utilisateur du logiciel n'a pas accès aux ressources internes et à la base de données.
+De plus, cela va de paire avec l'Open Closed Principle car chaque fonctionnalité pour les interfaces sont décrites dans une classe différente 
+et cela permet donc d'étendre et de modifier en tout temps les fonctionnalités pour chaque interface.
+
+Dependency Inversion Principle :
+Lors du raffinement du design, nous avons fait en sorte de respecter à la lettre ce principe en appliquant le modèle vu en cours :
+Nous avons utilisé le patron de fabrique abstraite qui consiste à utiliser l'héritage pour différentier les fonctionnalités du logiciel et permettre 
+d'avoir une implémentation différente pour chaque fonction.
+Avant d'appeler le Gestionnaire qui modifie la base de données, la communication se fait par le biais d'une classe Controller qui dirige le choix de 
+l'utilisateur ; cela permet plus de stabilité et de contrôle sur le processus.
+
+
+CCL :
+Tous ces concepts nous ont permis de raffiner notre  modèle du design en respectant dans la mesure du possible toutes les contraintes/suggestions d'ameliorations 
+tout en evitant de réimplémenter l'ensemble du diagramme de classes.
+Bien entendu, ces principes sont avant tout des indicateurs de qualité de conception dans le but de trouver le juste équilibre entre faible couplage et bonne 
+cohésion afin d'aboutir a une meilleure réutisabilité des modules et améliorer/faciliter la maintenance du projet.

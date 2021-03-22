@@ -1,0 +1,23 @@
+DISCUSSION COUPLAGE / COHÉSION :
+
+Le design du diagramme de classe a été révisé de manière à maximiser la cohésion des modules et minimiser le couplage.
+Ces notions peuvent être généralisées : chacune de nos classes a une seule fonction principale et n'interagit qu'avec un nombre minimal d'autres classes afin
+de limiter l'impact d'une potentielle future modification des exigences qui nécessiterait par exemple un ajout de fonctionnalités.
+
+Cela explique l'ajout de modules "intermédiaires" (Controller, Gestionnaire) qui gèrent l'accès des différents utilisateurs aux entités manipulées du logiciel 
+(Voyage, Compagnie, etc..).
+D'une part, ceci favorise la cohésion en assignant aux modules des fonctions uniques qui limitent le rayon d'action de chaque classe et d'une autre part, cela
+minimise le couplage en limitant le volume d'information échangé entre les classes.
+
+Du point de vue du couplage, le diagramme fourni se situe au niveau "Couplage par paquets" mais utilise parfois le couplage par données. 
+En effet, les modules s'échangent des structures de données simples qui contiennent des Entités, mais toutes les informations reliées aux Entités ne sont pas 
+utilisées systématiquement (les classes envoient des entités telles que Voyage, Location, ou des paramètres simples comme la Date). 
+De plus, la communication entre classes se fait le plus souvent possible de manière unilatérale pour souligner la hiérarchie des modules : les 'Gestionnaires' 
+s'occupent des Entités et c'est pour cela que les Entités ne peuvent pas appeler leur Gestionnaire, les 'Controller' appellent les Gestionnaires et non l'inverse.
+
+Du point de vue de la cohésion, la majorité des modules présents peuvent être catégorisés comme ayant une cohésion informationnelle.
+En effet, nous avons construit nos classes de manière à ce qu'elles n'aient qu'une unique fonction et travaillent sur une seule structure de donnée.
+Par exemple, les classes 'Gestionnaires' sont créées avec comme unique but de pouvoir accéder aux Entités modérées par le logiciel et les manipuler dans la base 
+de données.
+Les modules abstraits sont une représentation informatique de Concepts de la vie réelle et il est difficile de les scinder. Toutefois, nous avons choisi 
+d'utiliser une classe descriptive pour décrire la classe abstraite Voyage qui a plus d'attributs que des modules similaires.
