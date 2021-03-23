@@ -22,7 +22,7 @@ On commence avec les classes abstraites
 
 9) Le fardeau de S.Train = 3 {Section}
 
-10) Le fardeau de Siege = 2 {int, char}
+10) Le fardeau de Siege = 3 {int, char, EtatSiege}
 
 Puis on continue avec les interfaces
 
@@ -32,11 +32,11 @@ Puis on continue avec les classes de "bas niveau"
 
 12) Le fardeau de DescVoyage = 4 {string, int, double, long}
 
-13) Le fardeau de Aeroport = 8 {location}
+13) Le fardeau de Aeroport = 8 {Location}
 
-14) Le fardeau de Port = 8 {location}
+14) Le fardeau de Port = 8 {Location}
 
-15) Le fardeau de Gare = 8 {location}
+15) Le fardeau de Gare = 8 {Location}
 
 16) Le fardeau de C.Navale = 4 {Compagnie}
 
@@ -48,7 +48,7 @@ Puis on continue avec les classes de "bas niveau"
 
 20) Le fardeau de Paquebot = 3 {MoyenTransport}
 
-21) Le fardeau de Train = 3 {Moyen Transport}
+21) Le fardeau de Train = 3 {MoyenTransport}
 
 22) Le fardeau de Premiere  = 6 {ClasseA, float, S.Avion}
 
@@ -76,11 +76,11 @@ Puis on continue avec les classes de "bas niveau"
 
 34) Le fardeau de Position = 0
 
-35) Le fardeau de Cabine = 3 {Siege}
+35) Le fardeau de Cabine = 4 {Siege}
 
-36) Le fardeau de SiegeT = 3 {Siege}
+36) Le fardeau de SiegeT = 5 {Siege, Position}
 
-37) Le fardeau de SiegeA = 3 {Siege}
+37) Le fardeau de SiegeA = 5 {Siege, Position}
 
 38) Le fardeau de R.Avion = 3 {Reservation}
 
@@ -96,25 +96,25 @@ Puis on continue avec les classes de "bas niveau"
 
 44) Le fardeau de CarteCredit = 3 {String, long, int}
 
-45) Le fardeau de Paiement = 3 {double, Date, string}
+45) Le fardeau de Paiement = 7 {double, Date, string, Reservation, Client}
 
 46) Le fardeau de Client = 4 {string, CarteCredit}
 
 47) Le fardeau de LocationGestion = 10 {Location, Gestionnaire}
 
-48) Le fardeau de CompagnieGestion = 6 {Compagnie, Gestion}
+48) Le fardeau de CompagnieGestion = 6 {Compagnie, Gestionnaire}
 
-49) Le fardeau de MoyenTransportGestion = 5 {MoyenTransport, Gestion} 
+49) Le fardeau de MoyenTransportGestion = 5 {MoyenTransport, Gestionnaire} 
 
-50) Le fardeau de VoyageGestion = 9 {Voyage, Gestion}
+50) Le fardeau de VoyageGestion = 9 {Voyage, Gestionnaire}
 
-51) Le fardeau de SectionGestion = 5 {Section, Gestion}
+51) Le fardeau de SectionGestion = 5 {Section, Gestionnaire}
 
-52) Le fardeau de SiegeGestion = 5 {Siege, Gestion}
+52) Le fardeau de SiegeGestion = 6 {Siege, Gestionnaire}
 
-53) Le fardeau de ReservationGestion = 5 {Reservation, Gestion}
+53) Le fardeau de ReservationGestion = 5 {Reservation, Gestionnaire}
 
-54) Le fardeau de ClientGestion = 7 {Client, Gestion}
+54) Le fardeau de ClientGestion = 7 {Client, Gestionnaire}
 
 55) Le fardeau de ControllerLocation = 11 {LocationGestion}
 
@@ -126,22 +126,22 @@ Puis on continue avec les classes de "bas niveau"
 
 59) Le fardeau de ControllerSection = 6 {SectionGestion}
 
-60) Le fardeau de ControllerSiege = 8 {SiegeGestion}
+60) Le fardeau de ControllerSiege = 7 {SiegeGestion}
 
 61) Le fardeau de ControllerReservation = 18 {ReservationGestion, ControllerRecherche}
 
 62) Le fardeau de ControllerRecherche = 11 {LocationGestion}
 
-63) Le fardeau de CRUD_Client = 8 {Client Gestion}
+63) Le fardeau de CRUD_Client = 8 {ClientGestion}
 
-64) Le fardeau de AdminController = 54 {ControllerLocation, ControllerCompagnie, ControllerMoyenTransport, ControllerVoyage, ControllerSection, ControllerSiege}
+64) Le fardeau de AdminController = 53 {ControllerLocation, ControllerCompagnie, ControllerMoyenTransport, ControllerVoyage, ControllerSection, ControllerSiege}
 
 65) Le fardeau de ClientController = 28 {ControllerReservation, ControllerRecherche, CRUD_Client}
 
-66) Le fardeau de AdminView = 55 {AdminController}
+66) Le fardeau de AdminView = 54 {AdminController}
 
 67) Le fardeau de ClientView = 29 {ClientController}
 
-68) Le fardeau de Main_View = 86 {AdminView, ClientView}
+68) Le fardeau de Main_View = 85 {AdminView, ClientView}
 
 On voit que les classes de fondation (Abstract + direct kids) ont un faible fardeau ( 2<= x <=7). Alors que celles d'application (Main_view, etc..) ont un fardeau élevé. Ce qui concorde avec la théorie du cours (Slide 12 de Évaluation de Conception). De ce fait on a des classes d'application avec un grand taux de réutilisabilité (haut fardeau) et une bonne cohésion pour les classes de fondation. En plus on a une augmentation graduelle du fardeau en quand on passe d'un domaine bas à un domaine élevé
