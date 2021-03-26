@@ -161,20 +161,62 @@
                     Discussions et justifications
                 </td>
                 <td>
-                    40%
+                    60%
                 </td>
                 <td>
-                    20%
+                    10%
                 </td>
                 <td>
-                    40%
+                    30%
                 </td>
-
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Rapport
+                </td>
+                <td>
+                    0%
+                </td>
+                <td>
+                    0%
+                </td>
+                <td>
+                    100%
+                </td>
             </tr>
         </tbody>
     </table>
 
     
+
+    <h2>
+        Tâche 1 - Réseau de Pétri </h2>
+    <p>
+        Voici notre solution pour la tâche 1 (réseau de Pétri).
+    </p>
+    <ul style="text-align: left;">
+        <li>Voici un <a href="https://github.com/bachwilliam17/Devoir2_IFT3911">lien</a> vers les fichiers (repo GitHub mis en public).</li>
+        <li>Images affichées directement.</li>
+    </ul>
+    <img src="Reseau_Petri/analyse_invariant_loi_conservation.PNG" alt="Image 1" width="1400px"> </img>
+    <img src="Reseau_Petri/Justifications.png" alt="Image 2" width="800px" style="margin-bottom: 100px;"> </img>
+
+
+
+
+    <h2>
+        Tâche 2 - Statecharts</h2>
+    <p>
+        Voici notre solution pour la tâche 2 (Statechart Microwave).
+    </p>
+    <ul style="text-align: left;">
+        <li>Voici un <a href="https://github.com/bachwilliam17/Devoir2_IFT3911">lien</a> vers les fichiers (repo GitHub mis en public).</li>
+        <li>Images affichées directement.</li>
+    </ul>
+    <img src="Statecharts/statechart_microwave.png" alt="Image 1" width="1400px" style="margin-bottom: 100px;"> </img>
+
+
+
     
     <h2>
         Tâche 3 - Design</h2>
@@ -187,6 +229,13 @@
     </ul>
     <img src="Design/1diagClasse.png" alt="Image 1" width="1400px"> </img>
     <img src="Design/2diagClasse.png" alt="Image 2" width="1400px" style="margin-bottom: 100px;"> </img>
+
+    <img src="Design/1diagPaquets.png" alt="diag Paquet 1" width="1400px"></img>
+    <img src="Design/2diagPaquets.png" alt="diag Paquet 2" width="1400px" style="margin-bottom: 100px;"></img>
+
+    <img src="Design/1diagSequence_siegeReservation.png" alt="diag Sequence 1" width="1400px"></img>
+    <img src="Design/2diagSequence_verifVoyages.png" alt="diag Sequence 2" width="1400px"></img>
+    <img src="Design/3diagSequence_payerSiege.png" alt="diag Paquet 3" width="1400px" style="margin-bottom: 100px;"></img>
 
     <h2>Identification des modules réutilisables</h2>
     <p>
@@ -202,11 +251,104 @@
         <li>L'interface 'Gestionnaire' qui ne référence aucune classe et qui est très générale.</li>
         <li>L'ensemble des classes abstraites (Compagnie, Voyage, .. y compris Client) qui sont en bas de "l'échelle des références" de notre diagramme.</li>
     </ul>
-    <p>Les autres classes du diagramme sont soit des classes spécifiques qui ne pourraient pas être réutilisées, soit des classes manipulant les classes abstraites. 
+    <p style="margin-bottom: 100px;">Les autres classes du diagramme sont soit des classes spécifiques qui ne pourraient pas être réutilisées, soit des classes manipulant les classes abstraites. 
         Bien que les classes abstraites du diagramme ne fassent pas partie du domaine de fondation car elles ne sont pas utiles à toutes les industries, elles peuvent 
         facilement être réutilisées dans une industrie spécifique.
     </p>
     
+    <h2>
+        Discussion couplage / cohésion</h2>
+    <p style="margin-bottom: 100px;">
+        Le design du diagramme de classe a été révisé de manière à maximiser la cohésion des modules et minimiser le couplage.
+Ces notions peuvent être généralisées : chacune de nos classes a une seule fonction principale et n'interagit qu'avec un nombre minimal d'autres classes afin
+de limiter l'impact d'une potentielle future modification des exigences qui nécessiterait par exemple un ajout de fonctionnalités. <br> <br>
+
+Cela explique l'ajout de modules "intermédiaires" (Controller, Gestionnaire) qui gèrent l'accès des différents utilisateurs aux entités manipulées du logiciel 
+(Voyage, Compagnie, etc..).
+D'une part, ceci favorise la cohésion en assignant aux modules des fonctions uniques qui limitent le rayon d'action de chaque classe et d'une autre part, cela
+minimise le couplage en limitant le volume d'information échangé entre les classes. <br> <br>
+
+Du point de vue du couplage, le diagramme fourni se situe au niveau "Couplage par paquets" mais utilise parfois le couplage par données. 
+En effet, les modules s'échangent des structures de données simples qui contiennent des Entités, mais toutes les informations reliées aux Entités ne sont pas 
+utilisées systématiquement (les classes envoient des entités telles que Voyage, Location, ou des paramètres simples comme la Date). 
+De plus, la communication entre classes se fait le plus souvent possible de manière unilatérale pour souligner la hiérarchie des modules : les 'Gestionnaires' 
+s'occupent des Entités et c'est pour cela que les Entités ne peuvent pas appeler leur Gestionnaire, les 'Controller' appellent les Gestionnaires et non l'inverse. <br> <br>
+
+Du point de vue de la cohésion, la majorité des modules présents peuvent être catégorisés comme ayant une cohésion informationnelle.
+En effet, nous avons construit nos classes de manière à ce qu'elles n'aient qu'une unique fonction et travaillent sur une seule structure de donnée.
+Par exemple, les classes 'Gestionnaires' sont créées avec comme unique but de pouvoir accéder aux Entités modérées par le logiciel et les manipuler dans la base 
+de données. <br>
+Les modules abstraits sont une représentation informatique de Concepts de la vie réelle et il est difficile de les scinder. Toutefois, nous avons choisi 
+d'utiliser une classe descriptive pour décrire la classe abstraite Voyage qui a plus d'attributs que des modules similaires. <br>
+    </p>
+
+
+    <h2>
+        Discussion principes SOLID </h2>
+    <p style="margin-bottom: 100px;">
+        Single Responsability Principle : <br>
+Notre idée initiale de design (inspiree du modele MVC) consistait a assurer qu'une classe doit avoir une et une seule raison pour changer en plus 
+de s'assurer que ces methodes sont coherentes avec son abstraction : <br>
+Généralement, les classes du projet n'ont qu'une seule raison pour changer. Ce principe est suivi et il est en accord avec la volonté d'avoir une cohésion
+maximale : on n'assigne qu'une responsabilité à chacun des classes. <br><br>
+
+Open closed Principle : <br>
+Le design pour ce projet a spécifiquement été construit pour pouvoir être agrandi et non pas pour être modifié. <br>
+Cela se traduit par une utilisation de l'héritage avec les classes abstraites et les classes de Controller afin de pouvoir rajouter des types de voyages ou bien
+des fonctionnalités aux différentes interfaces (Admin et Client) mais aussi par l'implémentation d'interfaces (telles que 'Gestionnaire') pour qu'une extension
+du design soit facilement réalisable. <br>
+Au lieu de modifier des modules déjà existants, il suffit d'ajouter de nouveaux modules en cas de modification ou d'ajout d'exigences.
+Lors du raffininement du design, nous avons fait en sorte que les classes CRUD soit plus adaptées a un plus haut niveau d'abstraction et ainsi permettre aux 
+classes 'domaines' d'être plus ouvertes à l'extension et fermée à la modification interne. <br>
+Les sous-classes de ces classes heritent ainsi des principales fonctions mais se specialisent dans leur propre scope ( SRP ). <br><br>
+
+Liskov Substitutability Principle : <br> 
+Ce principe ne peut pas être appliqué à notre diagramme car il ne comporte pas de sous-type
+(seulement des types comme Voyage, Location .. et des classes comme Vol, Aéroport ..). <br>
+Mais si on parle en terme de classes, notre conception contient une  majorité de superclasses dont les sous-classes sont toutes conformes a ces dernieres dans 
+le sens ou elles peuvent se substituer sans engendre d'erreur de conception fatale : les sous-classes peuvent être utilisé dans n'importe quels contextes où 
+un objet de la superclasse est attendue ce qui nous permet de mieux  respecter  le LSP. <br><br>
+
+Interface Segregation Principle : <br>
+Le principe de ségrégation des interfaces est appliqué dans ce projet. <br>
+En effet, chaque type d'utilisateur (c'est-à-dire Admin et Client) interagit avec une interface différente. Cela favorise l'encapsulation et la sécurité
+car un simple utilisateur du logiciel n'a pas accès aux ressources internes et à la base de données. <br>
+De plus, cela va de paire avec l'Open Closed Principle car chaque fonctionnalité pour les interfaces sont décrites dans une classe différente 
+et cela permet donc d'étendre et de modifier en tout temps les fonctionnalités pour chaque interface. <br><br>
+
+Dependency Inversion Principle : <br>
+Lors du raffinement du design, nous avons fait en sorte de respecter à la lettre ce principe en appliquant le modèle vu en cours : <br>
+Nous avons utilisé le patron de fabrique abstraite qui consiste à utiliser l'héritage pour différentier les fonctionnalités du logiciel et permettre 
+d'avoir une implémentation différente pour chaque fonction. <br>
+Avant d'appeler le Gestionnaire qui modifie la base de données, la communication se fait par le biais d'une classe Controller qui dirige le choix de 
+l'utilisateur ; cela permet plus de stabilité et de contrôle sur le processus.<br><br>
+
+
+CCL :<br>
+Tous ces concepts nous ont permis de raffiner notre  modèle du design en respectant dans la mesure du possible toutes les contraintes/suggestions d'ameliorations 
+tout en evitant de réimplémenter l'ensemble du diagramme de classes.<br>
+Bien entendu, ces principes sont avant tout des indicateurs de qualité de conception dans le but de trouver le juste équilibre entre faible couplage et bonne 
+cohésion afin d'aboutir a une meilleure réutisabilité des modules et améliorer/faciliter la maintenance du projet.<br><br>
+    </p>
+
+
+
+    <h2>
+        Calcul et analyse du fardeau</h2>
+    
+    <p style="margin-bottom: 100px;"> Voici un <a href="Design/Discussion_Fardeau.txt">lien</a> vers un fichier texte pour les calculs et l'analyse.</p> 
+
+
+
+    <h2>
+        Grape IA</h2>
+    <img src="Design/GraphIA.png" alt="graphe IA" width="800px"></img>
+    
+    <p style="margin-bottom: 100px;"> Voici un <a href="Design/DiscussionGrapheIA.txt">lien</a> vers un fichier texte pour les valeurs exactes pour chaque classe
+         et l'analyse.</p> 
+
+
+
     
     <h2>
         Révision des contraintes OCL</h2>
@@ -214,30 +356,6 @@
     <p style="margin-bottom: 100px;"> Voici un <a href="Design/Contraintes_OCL.txt">lien</a> vers un fichier texte pour lire les contraintes OCL.</p> 
 
 
-
-
-    <p style="font-weight: bold;"> Justifications du diagramme de classe</p>
-    <ul style="margin-bottom: 100px;">
-        <li><p>La plupart du diagramme de classe utilise la généralisation (héritage) car on peut 
-            clairement voir dans la définition des exigences (énoncé) que chaque moyen de transport
-            différent (avion, train, bateau) est relié par les mêmes propriétés (compagnie propriétaire,
-            infrastructure de départ et d'arrivée, concept de siège, etc..).
-            De plus, tous les gestionnaires utilisent les mêmes fonctionnalités, c'est-à-dire ajouter,
-            modifier et supprimer, ce qui justifie l'emploi d'une interface générale 'Main_gestionnaire'.</p></li>
-        <li><p>Nous avons utilisé une classe descriptive 'DescriptionVoyage' afin de décrire l'objet
-            Voyage, car cela augmente la cohésion de la classe Voyage qui ne garde en attribut que ses
-            propriétés primaires. 
-            Cela améliore la maintenance de par le fait qu'un ajout de caractéristique d'un voyage dans
-            le futur pourra être fait plus facilement avec une classe entièrement dédiée à la description
-            d'un voyage.</p></li>
-        <li><p>Une classe Section a la responsabilité partielle de connaître le montant du plein tarif
-            à bord d'un voyage. C'est ensuite cette même classe et ses enfants (grâce à la 
-            généralisation) qui s'occupent de calculer le prix pour chaque section.</p></li>
-        <li><p>Notre structure utilise le modèle 'Vue-Contrôleur' afin de pouvoir optimiser le coupage
-            de l'architecture. ll y a 2 contrôleurs : celui du niveau administrateur qui s'occupe 
-            d'envoyer les requêtes aux différents gestionnaires et celui du niveau client qui gère
-            majoritairement les réservations de siège et les infos client.</p></li>
-    </ul>
 
 
 </body></html>
