@@ -443,6 +443,7 @@ Instabilité = 2/(0+2) = 1
 Abstraction = 0
 
 
-Puis j'ai convertit l'information obtenue en un fichier csv ("abstra.txt") et j'ai utilisé graphe.ipynb pour plotter le graphe instabilité vs abstraction de nos classes.
-Le graphe se trouve dans "GraphIA.png". On voit qu'on a beaucoup de classes qui se trouvent dans la useless zone. Mais celles-ci sont des classes commes "Avion" etc.. des classes qui
-sont instanciées par des classes abstraites pour être manipulées dans les gestionnaires
+Puis j'ai convertit l'information obtenue en un fichier csv ("abstra.txt") et j'ai utilisé graphe.ipynb pour plotter le graphe instabilité vs abstraction de nos 
+classes.
+Le graphe se trouve dans "GraphIA.png". On voit qu'on a beaucoup de classes qui se trouvent dans la useless zone. Mais celles-ci sont des classes comme "Avion" 
+etc.. des classes qui sont instanciées par des classes abstraites pour être manipulées dans les gestionnaires.
